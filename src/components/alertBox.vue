@@ -3,6 +3,7 @@
     <p>{{ text1 }}</p>
     <p>{{ text2 }}</p>
     <input type="submit" value="继续" class="continue" @click="showBtn" />
+
   </div>
 </template>
 
@@ -13,8 +14,12 @@ export default {
       isStart: false,
       text1: "请恢复到原始坐姿，准备下次测试。",
       text2: "请主持人继续点击按钮。",
+
+
     };
   },
+
+
   methods: {
     changeStart(data) {
       this.isStart = data;
@@ -32,12 +37,12 @@ export default {
       this.text2 = undefined;
       this.isStart = true;
     },
+
   },
   mounted() {
     this.$bus.$off("isShow");
     this.$bus.$on("isShow", this.changeStart);
     this.$bus.$on("exit", this.changeText);
-    this.$bus.$on("exit2", this.changeText);
   },
   beforeDestroy() {},
 };
